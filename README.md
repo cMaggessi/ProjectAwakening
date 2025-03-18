@@ -4,6 +4,8 @@
 
 Project Awakening RPG is a RPG system made with Spigot inspired by the mechanics of *Solo Leveling*, where players can:
 
+[ *Current version: 1.21.4-SPIGOT* ]
+
 - **Train to Gain Levels**: Perform exercises like sit-ups, push-ups, running, and jumping to level up.
 - **Spend Attribute Points**: Allocate points to improve stats like:
     - **Agility**: Run faster and jump higher.
