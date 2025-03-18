@@ -72,8 +72,8 @@ public class ManageMenu {
         ItemMeta teleportToMeta = teleport.getItemMeta();
         if(teleportMeta != null) {
             List<String> lore = new ArrayList<>();
-            teleportToMeta.setDisplayName(ChatColor.GOLD + "Teleports you to the designated sexo!!");
-            lore.add(ChatColor.LIGHT_PURPLE + "Wow, this is a handy sexo!!");
+            teleportToMeta.setDisplayName(ChatColor.GOLD + "Teleports you to the designated player.");
+            lore.add(ChatColor.LIGHT_PURPLE + "Wow, this is a handy feature!");
             teleportToMeta.setLore(lore);
             teleportTo.setItemMeta(teleportToMeta);
         }

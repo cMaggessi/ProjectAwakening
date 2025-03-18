@@ -38,25 +38,21 @@ public class ManageMenuListener implements Listener {
         switch (ev.getCurrentItem().getType()) {
             case RED_DYE -> {
                 p.closeInventory();
-                p.sendMessage("Target has been healed!!");
+                p.sendMessage("Target has been healed!");
                 target.setHealth(20);
             }
             case IRON_SWORD -> {
                 p.closeInventory();
-                p.sendMessage("Target has been killed!!");
+                p.sendMessage("Target has been killed!");
                 target.setHealth(0);
             }
             case ZOMBIE_HEAD -> {
                 p.closeInventory();
-                p.sendMessage("Zombie spawned at target's location!!");
+                p.sendMessage("Zombie spawned at target's location!");
                 target.getWorld().spawnEntity(target.getLocation(), EntityType.ZOMBIE);
             }
             case NETHER_STAR -> {
                 if (!ManageService.teleportRandomLocation(p, target)) {
-                    p.sendMessage(ChatColor.WHITE + "Sending" + ChatColor.RED + target.getDisplayName() + ChatColor.WHITE + "to a random location...");
-                    Bukkit.getScheduler().runTaskLater(Awakening.getInstance(), () -> {
-                        p.sendMessage("This might take a while... Hang tight my sexo!!");
-                    }, 20L);
                     p.closeInventory();
                 }
             }
