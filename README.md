@@ -1,26 +1,63 @@
-Project Awakening RPG is inspired by Solo Levelling RPG mechanics, where players can:
-- Train to get levels (Sit ups, push ups, run, jump)
-- Spend attribute points to get stronger (Agility, Strength, Mind, Endurance)
-- Kill strong foes to get gold
-- Buy new weapons and armor with said gold
-- Become even more stronger
-- Prestige system(???)
+# **Project Awakening RPG**
 
+**Inspired by Solo Leveling RPG Mechanics**
 
-There is still a lot to do.
+Project Awakening RPG is a game inspired by the mechanics of *Solo Leveling*, where players can:
 
+- **Train to Gain Levels**: Perform exercises like sit-ups, push-ups, running, and jumping to level up.
+- **Spend Attribute Points**: Allocate points to improve stats like:
+    - **Agility**: Run faster and jump higher.
+    - **Strength**: Deal more damage.
+    - **Mind**: Unlock powerful abilities.
+    - **Endurance**: Increase health and defense.
+- **Defeat Strong Foes**: Kill enemies to earn gold.
+- **Upgrade Gear**: Use gold to buy new weapons and armor.
+- **Grow Stronger**: Continuously improve your character.
+- **Prestige System**: (Potential feature) Reset progress for unique rewards or bonuses.
 
-But for now I've made a admin menu system that can track the player's health, level, teleports to random location and teleport to player.
+---
 
+## **Current Progress**
 
-TODO next:
-- First prototype
-- Persistent leveling (Saves player's data like levels, how many mobs they killed and etc..)
-- First prototype of achievement's rewards
+So far, I’ve implemented an **admin menu system** with the following features:
+- Track player health and level.
+- Teleport to random locations.
+- Teleport to specific players.
 
-TODO Future:
-- Shopping system
+---
 
-Far TODO:
-- Quest system
-- As the players get away from spawn the mobs get stronger (Encouraging the mechanics of becoming stronger and buying more items)
+## **TODO: Next Steps**
+
+### **Short-Term Goals**
+1. **Leveling Prototype**:
+    - Implement a basic leveling system.
+    - Introduce stat improvements:
+        - **Strength**: Increases damage dealt.
+        - **Agility**: Boosts running speed and jump height.
+        - **Mind**: Enables powerful abilities.
+        - **Endurance**: Enhances health and defense.
+2. **Persistent Leveling**:
+    - Save player data (e.g., levels, mobs killed, etc.).
+3. **Achievement Rewards**:
+    - Create a prototype for achievement-based rewards.
+
+---
+
+## **TODO: Future Features**
+
+### **Mid-Term Goals**
+- **Shopping System**:
+    - Allow players to spend gold on weapons, armor, and other upgrades.
+
+---
+
+### **Long-Term Goals**
+1. **Quest System**:
+    - Add quests to provide objectives and rewards.
+2. **Dynamic Mob Difficulty**:
+    - Increase mob strength as players move further from spawn, encouraging players to grow stronger and upgrade their gear.
+
+---
+
+## **Notes**
+There’s still a lot to do, but the foundation is coming together. Stay tuned for updates!
