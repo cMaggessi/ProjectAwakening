@@ -1,0 +1,14 @@
+name: Awakening
+version: '1.0-SNAPSHOT'
+main: me.azhereus.awakening.Awakening
+api-version: '1.21'
+commands:
+  manage:
+    description: Manage a player
+    usage: /manage <player>
+    permission: manager.player
+    permission-message: You don't have permission to access this command.
+  stats:
+      description: Manage your stats
+      usage: /stats
+      permission: all
