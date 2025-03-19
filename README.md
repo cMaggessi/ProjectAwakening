@@ -25,31 +25,39 @@ So far, I’ve implemented an **admin menu system** with the following features:
 - Track player health and level.
 - Teleport to random locations.
 - Teleport to specific players.
+- First skeleton of the leveling system **[NEW!!]**
+- Hard coded xpMultiplier (Will be configurable via config.yml later) **[NEW!!]**
+
+- Added attributes:
+    - Strength **[NEW!!]**
+    - Agility **[NEW!!]**
 
 ---
 
 ## **TODO: Next Steps**
 
-### **Short-Term Goals**
+### **Short-Term Goals (IN PROGRESS)**
 1. **Leveling Prototype**:
-    - Implement a basic leveling system.
-    - Introduce stat improvements:
-        - **Strength**: Increases damage dealt.
-        - **Agility**: Boosts running speed and jump height.
-        - **Mind**: Enables powerful abilities.
+    - Introducing more stats:
+        - **Mind**: Enables powerful abilities. [For now it won't do nothing.]
         - **Endurance**: Enhances health and defense.
-2. **Persistent Leveling**:
-    - Save player data (e.g., levels, mobs killed, etc.).
-3. **Achievement Rewards**:
-    - Create a prototype for achievement-based rewards.
+        - **Prospection**: Drops more ores (Will be a grindy stat for balancing.) [New stat idea, still WIP]
+2. **Attributes** 
+   - Each attribute will give bonus to players: 
+     - **Strength**: Will give players more damage.
+     - **Agility**: Will make players run faster, swim faster, and swing pickaxes faster
+     - **Endurance**: Increase player's health and armor points.
+     - **Prospection**: Increases drop ore rate by 0.05%
+     - **Mind**: For now it will do nothing.
 
 ---
 
 ## **TODO: Future Features**
 
 ### **Mid-Term Goals**
-- **Shopping System**:
-    - Allow players to spend gold on weapons, armor, and other upgrades.
+
+- **First prototype of ability system**:
+    - Abilities like dash, attack barrage, energy beams, and etc..
 
 ---
 
@@ -58,6 +66,8 @@ So far, I’ve implemented an **admin menu system** with the following features:
     - Add quests to provide objectives and rewards.
 2. **Dynamic Mob Difficulty**:
     - Increase mob strength as players move further from spawn, encouraging players to grow stronger and upgrade their gear.
+3. - **Shopping System**:
+- Allow players to spend gold on weapons, armor, and other upgrades.
 
 ---
 
