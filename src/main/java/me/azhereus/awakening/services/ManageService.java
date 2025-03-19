@@ -10,8 +10,8 @@ import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class ManageService {
 
@@ -24,22 +24,24 @@ public class ManageService {
         World w = target.getWorld();
         Random random = new Random();
 
-        int minX = -10000;
-        int maxX = 10000;
-        int minZ = -10000;
-        int maxZ = 10000;
+        int minX = -3500;
+        int maxX = 3500;
+        int minZ = -3500;
+        int maxZ = 3500;
 
-        int maxAttempts = 100;
+        int maxAttempts = 20;
         int attempts = 0;
 
         Location randomLocation = null;
-        List<Material> setOfLeaves = List.of(
+        Set<Material> blockBlackList = Set.of(
                 Material.ACACIA_LEAVES,
                 Material.BIRCH_LEAVES,
                 Material.AZALEA_LEAVES,
                 Material.CHERRY_LEAVES,
                 Material.DARK_OAK_LEAVES,
-                Material.SPRUCE_LEAVES
+                Material.SPRUCE_LEAVES,
+                Material.LAVA,
+                Material.WATER
         );
 
         while (attempts < maxAttempts) {
@@ -47,25 +49,20 @@ public class ManageService {
             int z = random.nextInt(maxZ - minZ + 1) + minZ;
 
             int y = w.getHighestBlockYAt(x, z);
+
             randomLocation = new Location(w, x, y, z);
 
             Biome biome = w.getBlockAt(x, y - 1, z).getBiome();
 
             if (biome == Biome.PLAINS || biome == Biome.FOREST || biome == Biome.SAVANNA) {
                 Block blockBelow = w.getBlockAt(x, y - 1, z);
-
-                if (blockBelow.getType().isSolid() &&
-                        blockBelow.getType() != Material.LAVA &&
-                        blockBelow.getType() != Material.WATER &&
-                        !setOfLeaves.contains(blockBelow.getType())) {
-                    break;
-                }
+                if (blockBelow.getType().isSolid() && !blockBlackList.contains(blockBelow.getType())) break;
             }
             attempts++;
         }
 
         if (attempts >= maxAttempts) {
-            p.sendMessage("Failed to find a valid location for " + target.getDisplayName() + ".");
+            p.sendMessage("Failed to find a valid location for " + target.getDisplayName() + ", please try again.");
             return false;
         }
 

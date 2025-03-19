@@ -1,6 +1,5 @@
 package me.azhereus.awakening.listeners;
 
-import me.azhereus.awakening.Awakening;
 import me.azhereus.awakening.services.ManageService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,7 +15,7 @@ public class ManageMenuListener implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent ev) {
         if (!ev.getView().getTitle().equals(ChatColor.GOLD + "Manage player")) {
-            ev.setCancelled(true);
+            ev.setCancelled(false);
             return;
         }
 
