@@ -34,8 +34,6 @@ So far, I’ve implemented an **admin menu system** with the following features:
 
 ---
 
-## **TODO: Next Steps**
-
 ### **Short-Term Goals (IN PROGRESS)**
 1. **Leveling Prototype**:
     - Introducing more stats:
