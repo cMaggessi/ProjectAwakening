@@ -12,9 +12,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class DataPersistenceListener implements Listener {
 
@@ -27,7 +25,6 @@ public class DataPersistenceListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent ev) {
         Player p = ev.getPlayer();
-        checkPlayerJoiningFirstTime(ev, p);
 
         PersistentDataContainer data = p.getPersistentDataContainer();
         // Create defaults for integer attributes.
@@ -35,6 +32,7 @@ public class DataPersistenceListener implements Listener {
         defaultIntData.put(Awakening.LEVEL_KEY, 1);
         defaultIntData.put(Awakening.STRENGTH_KEY, 1);
         defaultIntData.put(Awakening.AGILITY_KEY, 1);
+        defaultIntData.put(Awakening.HEALTH_KEY, 1);
         defaultIntData.put(Awakening.ATTRIBUTES_POINTS_KEY, 0);
 
         // Ensure each int attribute exists.
@@ -59,12 +57,14 @@ public class DataPersistenceListener implements Listener {
         double exp = data.getOrDefault(Awakening.EXP_KEY, PersistentDataType.DOUBLE, 0.0);
         int strength = data.getOrDefault(Awakening.STRENGTH_KEY, PersistentDataType.INTEGER, 1);
         int agility = data.getOrDefault(Awakening.AGILITY_KEY, PersistentDataType.INTEGER, 1);
+        int health = data.getOrDefault(Awakening.HEALTH_KEY, PersistentDataType.INTEGER, 1);
         String playerName = player.getDisplayName();
 
         if (level < 1) level = 1;
         if (exp < 0) exp = 0.0;
         if (strength < 1) strength = 1;
         if (agility < 1) agility = 1;
+        if (health <1 )health = 1;
 
         // write to plugin config
         String path = "players." + player.getUniqueId().toString() + ".";
@@ -73,39 +73,10 @@ public class DataPersistenceListener implements Listener {
         plugin.getConfig().set(path + "experience", exp);
         plugin.getConfig().set(path + "strength", strength);
         plugin.getConfig().set(path + "agility", agility);
+        plugin.getConfig().set(path + "health", health);
 
         // save player data to config
         plugin.saveConfig();
         Bukkit.getLogger().info("Persisted data for player " + player.getName());
-    }
-
-    // if player has already joined or not send cool messages
-    private static void checkPlayerJoiningFirstTime(PlayerJoinEvent ev, Player p) {
-        if(ev.getPlayer().hasPlayedBefore()) {
-            p.sendMessage("Welcome back "+ p.getDisplayName() + " let's level up some more! :D");
-        } else {
-            sendCoolFirstTimeMessage(p);
-        }
-    }
-
-
-
-    private static void sendCoolFirstTimeMessage(Player p) {
-        // TODO add cool array of messages, AI generated btw lol
-        List<String> welcomeMessages = List.of(
-                "The gates have opened, and " + p.getDisplayName() + " has entered the world of Project Awakening. Will you rise as the ultimate hunter?",
-                "A new hunter has emerged! Welcome, " + p.getDisplayName() + ", to Project Awakening. The dungeons await your strength.",
-                "The System has detected a new presence: " + p.getDisplayName() + ". Welcome to Project Awakening, hunter. Your journey begins now.",
-                "The shadows tremble as " + p.getDisplayName() + " steps into Project Awakening. Will you conquer the gates or fall to the monsters within?",
-                "Welcome, " + p.getDisplayName() + ", to Project Awakening. The Association has been notified of your arrival. Prove your worth, hunter.",
-                "The mana in the air shifts as " + p.getDisplayName() + " joins Project Awakening. A new hunter has entered the fray. Good luck.",
-                "The gates have chosen you, " + p.getDisplayName() + ". Welcome to Project Awakening. Will you awaken your true potential?",
-                "A new challenger approaches! " + p.getDisplayName() + " has arrived in Project Awakening. The dungeons are calling, hunter.",
-                "The System welcomes " + p.getDisplayName() + " to Project Awakening. Hunters, prepare for a new ally—or rival.",
-                "The world of Project Awakening grows stronger with the arrival of " + p.getDisplayName() + ". Will you become the next Shadow Monarch?"
-        );
-        Random rand = new Random();
-        String msg = welcomeMessages.get(rand.nextInt(welcomeMessages.size()));
-        Bukkit.broadcastMessage(msg);
     }
 }

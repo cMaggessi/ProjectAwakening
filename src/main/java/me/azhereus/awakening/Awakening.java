@@ -1,27 +1,19 @@
 package me.azhereus.awakening;
 
 import me.azhereus.awakening.commands.ManageCommand;
+import me.azhereus.awakening.commands.ResetStats;
 import me.azhereus.awakening.commands.StatsCommand;
 import me.azhereus.awakening.config.LevelConfig;
-import me.azhereus.awakening.listeners.DataPersistenceListener;
-import me.azhereus.awakening.listeners.LevelingListener;
-import me.azhereus.awakening.listeners.ManageMenuListener;
-import me.azhereus.awakening.listeners.StatsMenuListener;
+import me.azhereus.awakening.listeners.*;
 import me.azhereus.awakening.scoreboard.XPScoreboard;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.logging.Logger;
 
 public final class Awakening extends JavaPlugin implements Listener {
 
@@ -38,6 +30,7 @@ public final class Awakening extends JavaPlugin implements Listener {
     public static final NamespacedKey EXP_KEY = new NamespacedKey("awakening", "exp");
     public static final NamespacedKey STRENGTH_KEY = new NamespacedKey("awakening", "strength");
     public static final NamespacedKey AGILITY_KEY = new NamespacedKey("awakening", "agility");
+    public static final NamespacedKey HEALTH_KEY = new NamespacedKey("awakening", "health");
     public static final NamespacedKey ATTRIBUTES_POINTS_KEY = new NamespacedKey("awakening", "attributes");
 
 
@@ -52,13 +45,15 @@ public final class Awakening extends JavaPlugin implements Listener {
         getCommand("manage").setExecutor(new ManageCommand());
         getCommand("stats").setExecutor(new StatsCommand(this));
         getCommand("addPoints").setExecutor(new StatsCommand(this));
+        getCommand("resetstats").setExecutor(new ResetStats(this));
 
         // events and listeners
+        getServer().getPluginManager().registerEvents(this,this);
         getServer().getPluginManager().registerEvents(new ManageMenuListener(), this);
         getServer().getPluginManager().registerEvents(new DataPersistenceListener(this), this);
         getServer().getPluginManager().registerEvents(new LevelingListener(), this);
         getServer().getPluginManager().registerEvents(new StatsMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(this,this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
 
         // start interface / static initializers / etc..,
@@ -102,9 +97,6 @@ public final class Awakening extends JavaPlugin implements Listener {
     public <P, C> C getAttributeValue(Player p, NamespacedKey attr, PersistentDataType<P, C> type, C defaultValue) {
         return p.getPersistentDataContainer().getOrDefault(attr, type, defaultValue);
     }
-
-
-
 
 
 }

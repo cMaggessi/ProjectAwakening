@@ -17,3 +17,8 @@ commands:
     usage: /addPoints <target> <numberOfPoints>
     permission: op
     permission-message: You don't have permission to access this command.
+  resetstats:
+    description: Reset all your stats
+    usage: /resetstats [confirm]
+    permission: all
+    permission-message: You don't have permission to access this command.

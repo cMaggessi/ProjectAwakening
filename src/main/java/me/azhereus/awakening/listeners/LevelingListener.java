@@ -2,7 +2,6 @@ package me.azhereus.awakening.listeners;
 
 import me.azhereus.awakening.Awakening;
 import me.azhereus.awakening.config.LevelConfig;
-import net.md_5.bungee.api.ChatMessageType;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -14,7 +13,6 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
 
 public class LevelingListener implements Listener {
 
@@ -26,11 +24,11 @@ public class LevelingListener implements Listener {
 
         double currentExp = data.getOrDefault(Awakening.EXP_KEY, PersistentDataType.DOUBLE, 0.0);
 
-        player.sendMessage(ChatMessageType.SYSTEM +": Got "+ event.getAmount());
+//        player.sendMessage(ChatMessageType.SYSTEM +": Got "+ event.getAmount());
 
-        player.sendMessage(ChatMessageType.SYSTEM +": Multiplied "+ event.getAmount() * LevelConfig.getXpMultiplier());
+//        player.sendMessage(ChatMessageType.SYSTEM +": Multiplied "+ event.getAmount() * LevelConfig.getXpMultiplier());
 
-        // xp multiplier, for now its hard coded to 2x
+        // xp multiplier
         double xpGainMult = event.getAmount() * LevelConfig.getXpMultiplier();
         double newExp = currentExp + xpGainMult;
         int currentLevel = data.getOrDefault(Awakening.LEVEL_KEY, PersistentDataType.INTEGER, 1);
@@ -40,7 +38,7 @@ public class LevelingListener implements Listener {
             newExp -= expThreshold;
             currentLevel++;
             int currentPoints = data.getOrDefault(Awakening.ATTRIBUTES_POINTS_KEY, PersistentDataType.INTEGER, 0);
-            data.set(Awakening.ATTRIBUTES_POINTS_KEY, PersistentDataType.INTEGER, currentPoints + 10);
+            data.set(Awakening.ATTRIBUTES_POINTS_KEY, PersistentDataType.INTEGER, currentPoints + LevelConfig.ATTRIBUTE_POINTS_PER_LEVEL);
             sendLvlUpMessage(player, currentLevel);
             expThreshold = LevelConfig.getXpThreshold(currentLevel);
         }
@@ -65,7 +63,8 @@ public class LevelingListener implements Listener {
         );
         String msg = msgs.get(rand.nextInt(msgs.size()));
         p.sendMessage(msg);
-        p.sendMessage(ChatColor.GOLD +"Your level has increased to: " + currLvl + ".\n You get 10 attribute points.");
+        p.sendMessage(ChatColor.GOLD +"Your level has increased to " + currLvl +
+                ".\n You get "+ LevelConfig.ATTRIBUTE_POINTS_PER_LEVEL + " attribute points.");
         p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0f, 1.0f);
         p.playSound(p.getLocation(), Sound.ITEM_TRIDENT_RETURN, 1.0f, 1.0f);
     }
